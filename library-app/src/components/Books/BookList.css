@@ -1,0 +1,27 @@
+.booksContainer {
+    margin: 50px auto;
+    font-size: 1.5em;
+}
+
+.booksTable {
+    margin: 0 auto;
+    width: 80%;
+}
+
+th {
+    width: 30%;
+    padding: 15px;
+}
+
+td {
+    padding: 5px;
+}
+
+.addBookButton {
+    background-color: transparent;
+    color: white;
+    padding: 15px;
+    border: 1px solid #FFF;
+    border-radius: 5%;
+    cursor: pointer;
+}
