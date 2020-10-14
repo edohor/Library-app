@@ -81,7 +81,7 @@ function EditUserModal(props) {
                     </div>
                     <div className="entryField">
                         <span className="fieldText">Date of birth:</span>
-                        <input type="date" className="checkbox"
+                        <input type="date" className="inputDate"
                             onChange={event => setDob(event.target.value)}
                             defaultValue={dob}/>
                     </div>

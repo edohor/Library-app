@@ -89,7 +89,7 @@ function UsersList () {
             largestId = Math.max(...Object.keys(checkIds))+1;
         }
 
-        let obj = {id: largestId, name: name, lastName: lastName, dob: dob};
+        let obj = {id: largestId, name: name, lastName: lastName, dob: dob, books: []};
         users.push(obj);
 
         localStorage.setItem("users", JSON.stringify(users));
@@ -168,7 +168,7 @@ function UsersList () {
                     <tr>
                         <th>Name</th>
                         <th>Last name</th>
-                        <th>DOB</th>
+                        <th>Date of birth</th>
                         <th>Rent/Return</th>
                         <th></th>
                     </tr>
