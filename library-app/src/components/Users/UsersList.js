@@ -1,35 +1,170 @@
 import React, { useState } from 'react';
 import './UsersList.css';
 import Searchbar from '../Searchbar/Searchbar';
+import AddUserModal from '../ModalWindow/AddUserModal';
+import EditUserModal from '../ModalWindow/EditUserModal';
+import BookRentModal from '../ModalWindow/BookRentModal';
 
-function UsersList() {
-    const [ modalOpened, setModalOpened ] = useState(false);
+function UsersList () {
+
+    const [users, setUsers] = useState(
+        (localStorage.getItem("users")!==null && JSON.parse(localStorage.getItem("users")).length>0) ? 
+        JSON.parse(localStorage.getItem("users")) : []
+        );
+    const [ addUserModalOpened, setAddUserModalOpened ] = useState(false);
+    const [ editUserModalOpened, seteditUserModalOpened ] = useState(false);
+    const [ bookRentModalOpened, setbookRentModalOpened ] = useState(false);
     const [ search, setSearch ] = useState(false);
+    const [ userInfo, setUserInfo ] = useState(null);
+    const [ searchResults, setSearchResults ] = useState(false);
 
-    const searchUsers = (value) => {
+    const searchBooks = (value) => {
         console.log("value", value);
         setSearch(value);
+
+        if (value.length > 0) {
+            setSearchResults(true)
+        }
     }
 
-    function openAddUserPopup () {
-        console.log("openAddUserPopup");
-        setModalOpened(true);
+    function openAddBookPopup () {
+        setAddUserModalOpened(true);
+    }
+
+    function openEditBookPopup (id, index) {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id===id) {
+                console.log("openEditBookPopup users[i]", users[i]);
+                setUserInfo(users[i]);                
+            }            
+        }
+        
+        seteditUserModalOpened(true);
 
     }
 
-    function openEditUserPopup () {
-        console.log("openEditUserPopup");
-        setModalOpened(true);
+    function editUserInfo (id, name, lastName, dob) {
+        let obj = {id: id, name: name, lastName: lastName, dob: dob};
+
+        for(let i=0; i<users.length; i++){
+            if(users[i].id === id){
+                users.splice(i, 1, obj);
+            }
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        setUsers(JSON.parse(localStorage.getItem("users")));
+
+        closeModal();
+    }
+
+    function deleteUser (id){
+        for(let i=0; i<users.length; i++){
+            if(users[i].id === id){
+                users.splice(i, 1);
+            }
+        }
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        setUsers(JSON.parse(localStorage.getItem("users")));
+
+        closeModal();
+    }
+
+    function closeModal() {
+        setAddUserModalOpened(false);
+        seteditUserModalOpened(false);
+        setbookRentModalOpened(false);
+    }
+
+    function saveNewUser(name, lastName, dob) {
+        setAddUserModalOpened(false);
+        
+        // find largest id number and set it as id for new book
+        let largestId = 0;
+        if(users.length>0){
+            let checkIds = users.reduce((a, c) => (a[c.id] = c, a), {});
+            largestId = Math.max(...Object.keys(checkIds))+1;
+        }
+
+        let obj = {id: largestId, name: name, lastName: lastName, dob: dob};
+        users.push(obj);
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        setUsers(JSON.parse(localStorage.getItem("users")));
         
     }
 
+    function openRentBookPopup (id) {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id===id) {
+                console.log("openEditBookPopup users[i]", users[i]);
+                setUserInfo(users[i]);                
+            }            
+        }
+
+        setbookRentModalOpened(true);
+    }
+    
+    let editButton = [];
+    let rentButton = [];
+    let availableText = [];
+
+    let tableInfo = [];
+    if(searchResults){
+        if (users.length>0){
+            let filteredList = [];
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].name.toLowerCase().includes(search.toLowerCase()) || users[i].lastName.toLowerCase().includes(search.toLowerCase())) {
+                    filteredList.push(users[i]);
+                }
+            }
+            console.log("filteredList", filteredList);
+
+
+            tableInfo = filteredList.map((users, index) => {
+                editButton = <div onClick={() => openEditBookPopup(users.id, index)} className="editButton">Edit</div>
+                rentButton = <div onClick={() => openRentBookPopup(users.id, index)} className="editButton">Rent</div>
+
+                return (<tr className="tableRow">
+                            <td>{users.name}</td>
+                            <td>{users.lastName}</td>
+                            <td>{users.dob}</td>
+                            <td>{rentButton}</td>
+                            <td>{editButton}</td>
+                        </tr>)            
+            })
+        }
+
+    } else {
+        if (users.length>0){
+            tableInfo = users.map((users, index) => {
+                editButton = <div onClick={() => openEditBookPopup(users.id, index)} className="editButton">Edit</div>
+                rentButton = <div onClick={() => openRentBookPopup(users.id, index)} className="editButton">Rent</div>
+
+                return (<tr className="tableRow">
+                            <td>{users.name}</td>
+                            <td>{users.lastName}</td>
+                            <td>{users.dob}</td>
+                            <td>{rentButton}</td>
+                            <td>{editButton}</td>
+                        </tr>)            
+            })
+        }
+    }
+
+    console.log("users", users);
+
     return (
         <div>
-            <Searchbar search={e => searchUsers(e)}/>
-            <div className="usersContainer">
-                <button onClick={openAddUserPopup} className="addUserButton">Add new user</button>
+            <Searchbar search={e => searchBooks(e)}/>
+            <div className="booksContainer">
+                <button onClick={openAddBookPopup} className="bookButton">Add new user</button>
 
-                <table className="usersTable">
+                <table className="booksTable">
                     <tr>
                         <th>Name</th>
                         <th>Last name</th>
@@ -37,15 +172,28 @@ function UsersList() {
                         <th>Rent/Return</th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>n</td>
-                        <td>l</td>
-                        <td>d</td>
-                        <td>r</td>
-                        <td onClick={openEditUserPopup}>e</td>
-                    </tr>
+                    {tableInfo}
                 </table>
             </div>
+
+            <AddUserModal show={addUserModalOpened}
+                handleClose={closeModal}
+                saveNewUser={saveNewUser}/>
+
+            <EditUserModal show={editUserModalOpened}
+                handleClose={closeModal}
+                saveNewUser={saveNewUser}
+                userInfo={userInfo}
+                editUserInfo={editUserInfo}
+                deleteUser={deleteUser}/>
+                
+                
+            <BookRentModal show={bookRentModalOpened}
+                handleClose={closeModal}
+                saveNewUser={saveNewUser}
+                userInfo={userInfo}
+                editUserInfo={editUserInfo}
+                deleteUser={deleteUser}/>
         </div>
     )
 }

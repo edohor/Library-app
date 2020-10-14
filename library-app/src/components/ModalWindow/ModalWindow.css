@@ -36,6 +36,16 @@
     border-radius: 5%;
 }
 
+.inputDate{
+    margin: 0 20px;
+    padding: 0 10px;
+    width: 40%;
+    position: absolute;
+    left: 25%;
+    border: 1px solid transparent;
+    border-radius: 5%;
+}
+
 .checkbox {
     margin: 0 40px;
 }
@@ -51,4 +61,20 @@
 }
 .basicButtons *{
     margin: 0 5px;
+}
+
+.userInfoRent{
+    margin: 0 20px;
+    padding: 0 10px;
+    width: 60%;
+    position: absolute;
+    right: 10%;
+}
+
+.smallSearchBar {
+    height: 40px;
+    width: 60%;
+    border: 1px solid transparent;
+    border-radius: 5%;
+    margin-bottom: 20px;
 }

@@ -116,7 +116,7 @@ function BookList () {
         if(!searchResults){
             
             tableInfo = filteredList.map((filteredList, index) => {
-                editButton = <div onClick={() => openEditBookPopup(filteredList.id, index)}>Edit</div>
+                editButton = <div onClick={() => openEditBookPopup(filteredList.id, index)} className="editButton">Edit</div>
 
                 if (books.available) {
                     availableText = <div>Yes</div>
@@ -140,7 +140,7 @@ function BookList () {
             }
             
             tableInfo = searchFiltered.map((filteredList, index) => {
-                editButton = <div onClick={() => openEditBookPopup(filteredList.id, index)}>Edit</div>
+                editButton = <div onClick={() => openEditBookPopup(filteredList.id, index)} className="editButton">Edit</div>
 
                 if (books.available) {
                     availableText = <div>Yes</div>
@@ -169,7 +169,7 @@ function BookList () {
 
 
             tableInfo = filteredList.map((books, index) => {
-                editButton = <div onClick={() => openEditBookPopup(books.id, index)}>Edit</div>
+                editButton = <div onClick={() => openEditBookPopup(books.id, index)} className="editButton">Edit</div>
                 
                 if (books.available) {
                     availableText = <div>Yes</div>
@@ -189,7 +189,7 @@ function BookList () {
     } else {
         if (books.length>0){
             tableInfo = books.map((books, index) => {
-                editButton = <div onClick={() => openEditBookPopup(books.id, index)}>Edit</div>
+                editButton = <div onClick={() => openEditBookPopup(books.id, index)} className="editButton">Edit</div>
                 
                 if (books.available) {
                     availableText = <div>Yes</div>
