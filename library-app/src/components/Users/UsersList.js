@@ -3,21 +3,23 @@ import './UsersList.css';
 import Searchbar from '../Searchbar/Searchbar';
 
 function UsersList() {
-    
-    let search = "";
+    const [ modalOpened, setModalOpened ] = useState(false);
+    const [ search, setSearch ] = useState(false);
 
     const searchUsers = (value) => {
         console.log("value", value);
-        search = value;
+        setSearch(value);
     }
 
     function openAddUserPopup () {
         console.log("openAddUserPopup");
+        setModalOpened(true);
 
     }
 
     function openEditUserPopup () {
         console.log("openEditUserPopup");
+        setModalOpened(true);
         
     }
 

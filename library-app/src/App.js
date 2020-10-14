@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { withRouter, Switch, Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path={"/books"} render={BookList} />
-        <Route exact path={"/users"} render={UsersList} />
-        <Route exact path={"/"} render={Homepage}/>
+        <Route exact path={"/books"} component={BookList} />
+        <Route exact path={"/users"} component={UsersList} />
+        <Route exact path={"/"} component={Homepage}/>
       </Switch>
     </div>
   );

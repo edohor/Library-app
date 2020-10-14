@@ -1,0 +1,54 @@
+.modal {
+    text-align: center;
+}
+
+.modal-content {
+    background-color: #282c34;
+    color: #FFF;
+}
+
+.modal-header {
+    display: block;
+}
+
+.modal-footer {
+    display: block;
+    height: 70px;
+}
+
+.fieldText {
+    margin-right: 20px;
+}
+
+.entryField {
+    margin: 20px auto;
+    width: 80%;
+    text-align: left;
+}
+
+.inputText {
+    margin: 0 20px;
+    padding: 0 10px;
+    width: 60%;
+    position: absolute;
+    right: 10%;
+    border: 1px solid transparent;
+    border-radius: 5%;
+}
+
+.checkbox {
+    margin: 0 40px;
+}
+
+.deleteButton{
+    position: absolute;
+    left: 10%;
+}
+
+.basicButtons{
+    position: absolute;
+    right: 10%;
+}
+.basicButtons *{
+    margin: 0 5px;
+}
