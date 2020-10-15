@@ -28,8 +28,6 @@ function EditBookModal(props) {
     if (bookData !== props.bookInfo) {
         if (props.bookInfo!==null && !dataSet) {
             setInitaialData();
-            console.log("props.bookInfo.available", props.bookInfo.available);
-            console.log("props.bookInfo.rentedTo", props.bookInfo.rentedTo);
             if (!props.bookInfo.available && props.bookInfo.rentedTo!==undefined) {
                 for (let i = 0; i < users.length; i++) {
                     if (users[i].id === props.bookInfo.rentedTo) {
@@ -60,8 +58,6 @@ function EditBookModal(props) {
     function resetData(){
         setDataSet(false);
     }
-
-    console.log("userRented", userRented);
 
     let userInfo = null;
     if (userRented!=="") {
