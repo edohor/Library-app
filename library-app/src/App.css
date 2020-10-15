@@ -4,6 +4,7 @@
   color: #FFF;
   min-height: 100%;
   font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 html, body, #root {
@@ -40,7 +41,7 @@ html, body, #root {
   }
 }
 
-.tile {
+.booksTile, .usersTile {
   display: inline-block;
   width: 30%;
   height: 250px;
@@ -49,5 +50,26 @@ html, body, #root {
   padding: 20px;
   margin: 200px 10px;
   color: #FFF;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.booksTile:hover, .usersTile:hover {
   text-decoration: none;
+  color: #FFF
+}
+.booksTile {
+  background-image: url(https://image.shutterstock.com/z/stock-photo-many-open-old-multicolored-books-stand-on-the-bookshelf-1707816769.jpg);
+}
+.usersTile {
+  background-image: url(https://image.shutterstock.com/z/stock-photo-students-youth-adult-reading-education-knowledge-concept-387881125.jpg);
+  background-size: 100%;
+  background-position: center top;
+}
+
+.tileText {
+  font-size: 7vw;
+  position: relative;
+  top: 45%;
+  -webkit-text-stroke: 2px black;
 }

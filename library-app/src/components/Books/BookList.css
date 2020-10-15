@@ -8,6 +8,9 @@
     width: 80%;
 }
 
+table, th, td {
+}
+
 th {
     width: 30%;
     padding: 15px;
@@ -15,6 +18,10 @@ th {
 
 td {
     padding: 5px;
+}
+
+th, td {
+    border-bottom: 1px solid #202020;
 }
 
 .bookButton {
@@ -27,9 +34,15 @@ td {
     margin: 0 10px 20px 10px;
     width: 30%;
 }
+.bookButton:hover {
+    background-color: #323640;
+}
 
 .tableRow{
     margin: 10px 0;
+}
+.tableRow:hover {
+    background-color: #323640;
 }
 
 .editButton {

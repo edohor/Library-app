@@ -11,6 +11,10 @@ function UsersList () {
         (localStorage.getItem("users")!==null && JSON.parse(localStorage.getItem("users")).length>0) ? 
         JSON.parse(localStorage.getItem("users")) : []
         );
+    const [books, setBooks] = useState(
+        (localStorage.getItem("books")!==null && JSON.parse(localStorage.getItem("books")).length>0) ? 
+        JSON.parse(localStorage.getItem("books")) : []
+        );
     const [ addUserModalOpened, setAddUserModalOpened ] = useState(false);
     const [ editUserModalOpened, seteditUserModalOpened ] = useState(false);
     const [ bookRentModalOpened, setbookRentModalOpened ] = useState(false);
@@ -69,6 +73,19 @@ function UsersList () {
         localStorage.setItem("users", JSON.stringify(users));
 
         setUsers(JSON.parse(localStorage.getItem("users")));
+
+        for (let i = 0; i < books.length; i++) {
+            console.log("books = ", books[i]);
+            if (books[i].rentedTo === id) {
+                let bookObj = {id: books[i].id, author: books[i].author, title: books[i].title, available: true, rentedTo: []};
+
+                books.splice(i, 1, bookObj);
+
+                localStorage.setItem("books", JSON.stringify(books));
+
+                setBooks(JSON.parse(localStorage.getItem("books")));
+            }
+        }
 
         closeModal();
     }
