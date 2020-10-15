@@ -10,6 +10,11 @@ function EditBookModal(props) {
     const [title, setTitle] = useState("");
     const [available, setAvailable] = useState(null);
     const [dataSet, setDataSet] = useState(false);
+    const [users, setUsers] = useState(
+        (localStorage.getItem("users")!==null && JSON.parse(localStorage.getItem("users")).length>0) ? 
+        JSON.parse(localStorage.getItem("users")) : []
+        );
+    const [userRented, setUserRented] = useState("");
 
     function setInitaialData() {
         bookData = props.bookInfo;
@@ -23,6 +28,17 @@ function EditBookModal(props) {
     if (bookData !== props.bookInfo) {
         if (props.bookInfo!==null && !dataSet) {
             setInitaialData();
+            console.log("props.bookInfo.available", props.bookInfo.available);
+            console.log("props.bookInfo.rentedTo", props.bookInfo.rentedTo);
+            if (!props.bookInfo.available && props.bookInfo.rentedTo!==undefined) {
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].id === props.bookInfo.rentedTo) {
+                        setUserRented(users[i]);
+                    }
+                }
+            } else {
+                setUserRented("");
+            }
         }        
     }
 
@@ -43,6 +59,20 @@ function EditBookModal(props) {
 
     function resetData(){
         setDataSet(false);
+    }
+
+    console.log("userRented", userRented);
+
+    let userInfo = null;
+    if (userRented!=="") {
+        userInfo = (
+            <div className="entryField">
+                <span className="fieldText">Rented to:</span>
+                <span className="userInfo">{userRented.name + " " + userRented.lastName + " " + userRented.dob}</span>
+            </div>
+        )
+    } else {
+        userInfo = null;
     }
 
     return (
@@ -83,6 +113,7 @@ function EditBookModal(props) {
                             onChange={event => setAvailable(event.target.checked)}
                             defaultChecked={available}/>
                     </div>
+                    {userInfo}
                 </Modal.Body>
 
                 <Modal.Footer>
