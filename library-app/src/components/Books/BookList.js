@@ -18,7 +18,6 @@ function BookList () {
     const [ searchResults, setSearchResults ] = useState(false);
 
     const searchBooks = (value) => {
-        console.log("value", value);
         setSearch(value);
 
         if (value.length > 0) {
@@ -33,7 +32,6 @@ function BookList () {
     function openEditBookPopup (id, index) {
         for (let i = 0; i < books.length; i++) {
             if (books[i].id===id) {
-                console.log("openEditBookPopup books[i]", books[i]);
                 setBookInfo(books[i]);                
             }            
         }
@@ -165,7 +163,6 @@ function BookList () {
                     filteredList.push(books[i]);
                 }
             }
-            console.log("filteredList", filteredList);
 
 
             tableInfo = filteredList.map((books, index) => {

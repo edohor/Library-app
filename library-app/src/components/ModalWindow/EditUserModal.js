@@ -10,8 +10,6 @@ function EditUserModal(props) {
     const [lastName, setLastName] = useState("");
     const [dob, setDob] = useState("");
     const [dataSet, setDataSet] = useState(false);
-    
-    console.log("EditUserModal props", props);
 
     function setInitaialData() {
         userData = props.userInfo;

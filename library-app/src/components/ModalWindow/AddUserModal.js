@@ -35,18 +35,19 @@ function AddUserModal(props) {
                     </div>
                     <div className="entryField">
                         <span className="fieldText">Last name:</span>
-                        <input type="text" className="inputText"
+                        <input type="text" className="inputText" 
                             onChange={event => setLastName(event.target.value)}/>
                     </div>
                     <div className="entryField">
                         <span className="fieldText">Date of birth:</span>
-                        <input type="date" className="inputDate"
+                        <input type="date" className="inputDate" 
                             onChange={event => setDob(event.target.value)}/>
                     </div>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => props.saveNewUser(name, lastName, dob)}>Done</Button>
+                    <Button variant="primary" 
+                    onClick={() => props.saveNewUser(name, lastName, dob)}>Done</Button>
                     <Button variant="secondary" onClick={props.handleClose}>Cancel</Button>
                 </Modal.Footer>
             </Modal>

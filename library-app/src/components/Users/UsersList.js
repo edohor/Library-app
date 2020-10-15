@@ -19,11 +19,11 @@ function UsersList () {
     const [ editUserModalOpened, seteditUserModalOpened ] = useState(false);
     const [ bookRentModalOpened, setbookRentModalOpened ] = useState(false);
     const [ search, setSearch ] = useState(false);
-    const [ userInfo, setUserInfo ] = useState(null);
+    const [ userEditInfo, setUserEditInfo ] = useState(null);
+    const [ userRentInfo, setUserRentInfo ] = useState(null);
     const [ searchResults, setSearchResults ] = useState(false);
 
     const searchBooks = (value) => {
-        console.log("value", value);
         setSearch(value);
 
         if (value.length > 0) {
@@ -38,8 +38,7 @@ function UsersList () {
     function openEditBookPopup (id, index) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id===id) {
-                console.log("openEditBookPopup users[i]", users[i]);
-                setUserInfo(users[i]);                
+                setUserEditInfo(users[i]);                
             }            
         }
         
@@ -75,7 +74,6 @@ function UsersList () {
         setUsers(JSON.parse(localStorage.getItem("users")));
 
         for (let i = 0; i < books.length; i++) {
-            console.log("books = ", books[i]);
             if (books[i].rentedTo === id) {
                 let bookObj = {id: books[i].id, author: books[i].author, title: books[i].title, available: true, rentedTo: []};
 
@@ -118,8 +116,7 @@ function UsersList () {
     function openRentBookPopup (id) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id===id) {
-                console.log("openEditBookPopup users[i]", users[i]);
-                setUserInfo(users[i]);                
+                setUserRentInfo(users[i]);                
             }            
         }
 
@@ -139,7 +136,6 @@ function UsersList () {
                     filteredList.push(users[i]);
                 }
             }
-            console.log("filteredList", filteredList);
 
 
             tableInfo = filteredList.map((users, index) => {
@@ -173,8 +169,6 @@ function UsersList () {
         }
     }
 
-    console.log("users", users);
-
     return (
         <div>
             <Searchbar search={e => searchBooks(e)}/>
@@ -200,7 +194,7 @@ function UsersList () {
             <EditUserModal show={editUserModalOpened}
                 handleClose={closeModal}
                 saveNewUser={saveNewUser}
-                userInfo={userInfo}
+                userInfo={userEditInfo}
                 editUserInfo={editUserInfo}
                 deleteUser={deleteUser}/>
                 
@@ -208,7 +202,7 @@ function UsersList () {
             <BookRentModal show={bookRentModalOpened}
                 handleClose={closeModal}
                 saveNewUser={saveNewUser}
-                userInfo={userInfo}
+                userInfo={userRentInfo}
                 editUserInfo={editUserInfo}
                 deleteUser={deleteUser}/>
         </div>

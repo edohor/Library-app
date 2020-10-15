@@ -20,8 +20,6 @@ function BookRentModal(props) {
         JSON.parse(localStorage.getItem("users")) : []
         );
     const [search, setSearch] = useState("");
-    
-    console.log("BookRentModal props", props);
 
     function setInitaialData() {
         userData = props.userInfo;
@@ -55,10 +53,6 @@ function BookRentModal(props) {
     }
 
     function addBookForRent (bookId, author, title) {
-        console.log("BookRentModal addBookForRent rented", rented);
-        console.log("BookRentModal addBookForRent", bookId);
-        console.log("BookRentModal addBookForRent", author);
-        console.log("BookRentModal addBookForRent", title);
 
         let rentedBooks = rented;
         rentedBooks.push(bookId);
@@ -91,9 +85,6 @@ function BookRentModal(props) {
     }
 
     function returnBook (bookId, author, title) {
-        console.log("BookRentModal returnBook", bookId);
-        console.log("BookRentModal returnBook", users);
-        console.log("BookRentModal returnBook", books);
 
         let rentedBooks = rented;
         for(let i=0; i<rentedBooks.length; i++){
@@ -165,7 +156,6 @@ function BookRentModal(props) {
                 filteredList.push(books[i]);
             }
         }
-        console.log("filteredList = ", filteredList);
 
         if (filteredList.length > 0) {
             bookListTable = filteredList.map((books, index) => {
@@ -176,7 +166,6 @@ function BookRentModal(props) {
                 } else {
                     availableText = <div>No</div>
                     if (userData.id===books.rentedTo) {
-                        console.log("RENTED");
                         addBook = <div onClick={() => returnBook(books.id, books.author, books.title)} className="editButton">Return</div>
                     } else {
                         addBook = null;

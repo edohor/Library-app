@@ -10,8 +10,6 @@ function EditBookModal(props) {
     const [title, setTitle] = useState("");
     const [available, setAvailable] = useState(null);
     const [dataSet, setDataSet] = useState(false);
-    
-    console.log("EditBookModal props", props);
 
     function setInitaialData() {
         bookData = props.bookInfo;
@@ -24,9 +22,6 @@ function EditBookModal(props) {
 
     if (bookData !== props.bookInfo) {
         if (props.bookInfo!==null && !dataSet) {
-            console.log("EditBookModal author before setting", author);
-            console.log("EditBookModal title before setting", title);
-            console.log("EditBookModal available before setting", available);
             setInitaialData();
         }        
     }
@@ -49,10 +44,6 @@ function EditBookModal(props) {
     function resetData(){
         setDataSet(false);
     }
-
-    console.log("EditBookModal author", author);
-    console.log("EditBookModal title", title);
-    console.log("EditBookModal available", available);
 
     return (
         <div>
