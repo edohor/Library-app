@@ -73,3 +73,6 @@ html, body, #root {
   top: 45%;
   -webkit-text-stroke: 2px black;
 }
+
+button:focus { outline:0 !important; }
+

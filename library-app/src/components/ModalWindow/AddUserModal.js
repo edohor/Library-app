@@ -7,6 +7,29 @@ function AddUserModal(props) {
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const [dob, setDob] = useState("");
+    const [disabled, setDisabled] = useState(true);
+
+    function closeModal() {
+        resetData();
+        props.handleClose();
+    }
+
+    function saveClose() {
+        resetData();
+        props.saveNewUser(name, lastName, dob);
+    }
+
+    function resetData(){
+        setName("");
+        setLastName("");
+        setDob("");
+    }
+
+    if (name.length > 0 && lastName.length > 0 && dob.length > 0 && disabled) {
+        setDisabled(false);
+    } else if ((name.length === 0 || lastName.length === 0 || dob.length === 0) && !disabled) {
+        setDisabled(true);
+    }
 
     return (
         <div>
@@ -31,24 +54,27 @@ function AddUserModal(props) {
                     <div className="entryField">
                         <span className="fieldText">Name:</span>
                         <input type="text" className="inputText" 
-                            onChange={event => setName(event.target.value)}/>
+                            onChange={event => setName(event.target.value)}
+                            value={name}/>
                     </div>
                     <div className="entryField">
                         <span className="fieldText">Last name:</span>
                         <input type="text" className="inputText" 
-                            onChange={event => setLastName(event.target.value)}/>
+                            onChange={event => setLastName(event.target.value)}
+                            value={lastName}/>
                     </div>
                     <div className="entryField">
                         <span className="fieldText">Date of birth:</span>
                         <input type="date" className="inputDate" 
-                            onChange={event => setDob(event.target.value)}/>
+                            onChange={event => setDob(event.target.value)}
+                            value={dob}/>
                     </div>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="primary" 
-                    onClick={() => props.saveNewUser(name, lastName, dob)}>Done</Button>
-                    <Button variant="secondary" onClick={props.handleClose}>Cancel</Button>
+                    <Button variant="primary" disabled={disabled}
+                    onClick={saveClose}>Done</Button>
+                    <Button variant="secondary" onClick={closeModal}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
         </div>

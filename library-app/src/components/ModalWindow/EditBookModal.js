@@ -15,6 +15,7 @@ function EditBookModal(props) {
         JSON.parse(localStorage.getItem("users")) : []
         );
     const [userRented, setUserRented] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     function setInitaialData() {
         bookData = props.bookInfo;
@@ -38,6 +39,9 @@ function EditBookModal(props) {
                 setUserRented("");
             }
         }        
+    } else if (bookData !== null && !dataSet && 
+        (author !== bookData.author || title !== bookData.title || available !== bookData.available)) {
+        setInitaialData();
     }
 
     function editData() {
@@ -69,6 +73,12 @@ function EditBookModal(props) {
         )
     } else {
         userInfo = null;
+    }
+
+    if (author.length > 0 && title.length > 0 && disabled) {
+        setDisabled(false);
+    } else if ((author.length === 0 || title.length === 0) && !disabled) {
+        setDisabled(true);
     }
 
     return (
@@ -115,7 +125,7 @@ function EditBookModal(props) {
                 <Modal.Footer>
                     <Button variant="danger" className="deleteButton" onClick={deleteBook}>Delete</Button>
                     <div className="basicButtons">
-                        <Button variant="primary" onClick={editData}>Done</Button>
+                        <Button variant="primary" disabled={disabled} onClick={editData}>Done</Button>
                         <Button variant="secondary" onClick={closeModal}>Cancel</Button>
                     </div>
                 </Modal.Footer>

@@ -22,6 +22,7 @@ td {
     color: white;
     padding: 15px;
     border: 1px solid #FFF;
-    border-radius: 5%;
     cursor: pointer;
+    outline: 0;
 }
+.addUserButton:focus { outline:0 !important; }
