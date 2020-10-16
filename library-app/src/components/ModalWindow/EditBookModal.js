@@ -42,6 +42,7 @@ function EditBookModal(props) {
     } else if (bookData !== null && !dataSet && 
         (author !== bookData.author || title !== bookData.title || available !== bookData.available)) {
         setInitaialData();
+        setDataSet(false);
     }
 
     function editData() {

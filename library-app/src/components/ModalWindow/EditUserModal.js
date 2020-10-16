@@ -21,14 +21,24 @@ function EditUserModal(props) {
         setDataSet(true);
     }
 
+
+    console.log("userData", userData);
+    console.log("props.userInfo", props.userInfo);
+    console.log("dataSet", dataSet);
+
     if (userData !== props.userInfo) {
         if (props.userInfo!==null && !dataSet) {
+            console.log("props.userInfo!==null && !dataSet");
             setInitaialData();
         }        
     } else if (userData !== null && !dataSet && 
         (name !== userData.name || lastName !== userData.lastName || dob !== userData.dob)) {
+            console.log("different values");
         setInitaialData();
+        setDataSet(false);
     }
+
+    console.log("name", name);
 
     function editData() {
         resetData();
