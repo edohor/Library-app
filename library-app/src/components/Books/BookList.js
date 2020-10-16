@@ -126,7 +126,7 @@ function BookList () {
                             <td>{filteredList.author}</td>
                             <td>{filteredList.title}</td>
                             <td>{availableText}</td>
-                            <td>{editButton}</td>
+                            <td className="textButton">{editButton}</td>
                         </tr>)            
             })
         } else {
@@ -150,7 +150,7 @@ function BookList () {
                             <td>{filteredList.author}</td>
                             <td>{filteredList.title}</td>
                             <td>{availableText}</td>
-                            <td>{editButton}</td>
+                            <td className="textButton">{editButton}</td>
                         </tr>)            
             })
         }
@@ -178,7 +178,7 @@ function BookList () {
                             <td>{books.author}</td>
                             <td>{books.title}</td>
                             <td>{availableText}</td>
-                            <td>{editButton}</td>
+                            <td className="textButton">{editButton}</td>
                         </tr>)            
             })
         }
@@ -198,7 +198,7 @@ function BookList () {
                             <td>{books.author}</td>
                             <td>{books.title}</td>
                             <td>{availableText}</td>
-                            <td>{editButton}</td>
+                            <td className="textButton">{editButton}</td>
                         </tr>)            
             })
         }

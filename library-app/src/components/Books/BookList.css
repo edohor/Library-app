@@ -47,3 +47,7 @@ th, td {
 .editButton {
     cursor: pointer;
 }
+
+.textButton {
+  font-size: 0.8em;
+}
