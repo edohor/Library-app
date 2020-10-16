@@ -33,7 +33,6 @@ function EditUserModal(props) {
 
     function editData() {
         resetData();
-        console.log("userData", userData);
         props.editUserInfo(props.userInfo.id, name, lastName, dob, props.userInfo.books);
     }
 
