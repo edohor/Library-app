@@ -68,7 +68,7 @@ html, body, #root {
 }
 
 .tileText {
-  font-size: 7vw;
+  font-size: 5vw;
   position: relative;
   top: 45%;
   -webkit-text-stroke: 2px black;
