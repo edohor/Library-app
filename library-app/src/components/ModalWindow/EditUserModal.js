@@ -10,6 +10,7 @@ function EditUserModal(props) {
     const [lastName, setLastName] = useState("");
     const [dob, setDob] = useState("");
     const [dataSet, setDataSet] = useState(false);
+    const [disabled, setDisabled] = useState(false);
 
     function setInitaialData() {
         userData = props.userInfo;
@@ -24,6 +25,9 @@ function EditUserModal(props) {
         if (props.userInfo!==null && !dataSet) {
             setInitaialData();
         }        
+    } else if (userData !== null && !dataSet && 
+        (name !== userData.name || lastName !== userData.lastName || dob !== userData.dob)) {
+        setInitaialData();
     }
 
     function editData() {
@@ -43,6 +47,12 @@ function EditUserModal(props) {
 
     function resetData(){
         setDataSet(false);
+    }
+
+    if (name.length > 0 && lastName.length > 0 && dob.length > 0 &&  disabled) {
+        setDisabled(false);
+    } else if ((name.length === 0 || lastName.length === 0 || dob.length === 0) && !disabled) {
+        setDisabled(true);
     }
 
     return (
@@ -88,7 +98,7 @@ function EditUserModal(props) {
                 <Modal.Footer>
                     <Button variant="danger" className="deleteButton" onClick={deleteUser}>Delete</Button>
                     <div className="basicButtons">
-                        <Button variant="primary" onClick={editData}>Done</Button>
+                        <Button variant="primary" disabled={disabled} onClick={editData}>Done</Button>
                         <Button variant="secondary" onClick={closeModal}>Cancel</Button>
                     </div>
                 </Modal.Footer>
