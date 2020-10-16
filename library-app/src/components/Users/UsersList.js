@@ -46,8 +46,8 @@ function UsersList () {
 
     }
 
-    function editUserInfo (id, name, lastName, dob) {
-        let obj = {id: id, name: name, lastName: lastName, dob: dob};
+    function editUserInfo (id, name, lastName, dob, books) {
+        let obj = {id: id, name: name, lastName: lastName, dob: dob, books: books};
 
         for(let i=0; i<users.length; i++){
             if(users[i].id === id){
