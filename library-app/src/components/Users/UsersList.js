@@ -146,8 +146,8 @@ function UsersList () {
                             <td>{users.name}</td>
                             <td>{users.lastName}</td>
                             <td>{users.dob}</td>
-                            <td>{rentButton}</td>
-                            <td>{editButton}</td>
+                            <td className="textButton">{rentButton}</td>
+                            <td className="textButton">{editButton}</td>
                         </tr>)            
             })
         }
